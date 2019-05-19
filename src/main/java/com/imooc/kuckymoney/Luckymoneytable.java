@@ -3,12 +3,15 @@ package com.imooc.kuckymoney;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 @Entity
 public class Luckymoneytable {
     @Id
     @GeneratedValue//递增的注解
     private Integer id;
+
+    @Min(value = 3, message = "最少发三元红包")
     private BigDecimal money;
 
     public Luckymoneytable() {

@@ -1,8 +1,10 @@
 package com.imooc.kuckymoney;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
@@ -26,11 +28,14 @@ public class LuckymoneyController {
      *创建红包
      */
     @PostMapping("/luckymoneys")
-    public Luckymoneytable create(@RequestParam("producer") String producer,
-                                  @RequestParam("money")BigDecimal money){
-        Luckymoneytable luckymoneytable = new Luckymoneytable();
-        luckymoneytable.setProducer(producer);
-        luckymoneytable.setMoney(money);
+    public Luckymoneytable create(@Valid Luckymoneytable luckymoneytable,
+                                  BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+           return null;
+        }
+        luckymoneytable.setProducer(luckymoneytable.getProducer());
+        luckymoneytable.setMoney(luckymoneytable.getMoney());
         return repository.save(luckymoneytable);
 
     }
