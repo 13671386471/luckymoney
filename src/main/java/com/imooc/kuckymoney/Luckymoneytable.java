@@ -49,6 +49,16 @@ public class Luckymoneytable {
         this.consumer = consumer;
     }
 
+    @Override
+    public String toString() {
+        return "Luckymoneytable{" +
+                "id=" + id +
+                ", money=" + money +
+                ", producer='" + producer + '\'' +
+                ", consumer='" + consumer + '\'' +
+                '}';
+    }
+
     /**
      * 发送方
      */

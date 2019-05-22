@@ -1,5 +1,10 @@
-package com.imooc.kuckymoney;
+package com.imooc.kuckymoney.controller;
 
+import com.imooc.kuckymoney.LuckymoneyRepository;
+import com.imooc.kuckymoney.LuckymoneyService;
+import com.imooc.kuckymoney.Luckymoneytable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +16,7 @@ import java.util.Optional;
 
 @RestController
 public class LuckymoneyController {
+    public final static Logger logger = LoggerFactory.getLogger(Luckymoneytable.class);
     @Autowired
     private LuckymoneyRepository repository;
 
@@ -21,6 +27,8 @@ public class LuckymoneyController {
      */
     @GetMapping("/luckymoneys")
     public List<Luckymoneytable> list(){
+        logger.info("innerrrrr");
+        System.out.println("innerr");
         return repository.findAll();
     }
 
