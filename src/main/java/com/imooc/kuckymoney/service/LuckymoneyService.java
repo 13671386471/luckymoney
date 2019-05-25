@@ -1,5 +1,7 @@
-package com.imooc.kuckymoney;
+package com.imooc.kuckymoney.service;
 
+import com.imooc.kuckymoney.LuckymoneyRepository;
+import com.imooc.kuckymoney.domain.Luckymoneytable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

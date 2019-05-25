@@ -1,4 +1,4 @@
-package com.imooc.kuckymoney;
+package com.imooc.kuckymoney.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

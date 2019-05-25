@@ -1,8 +1,10 @@
 package com.imooc.kuckymoney.controller;
 
 import com.imooc.kuckymoney.LuckymoneyRepository;
-import com.imooc.kuckymoney.LuckymoneyService;
-import com.imooc.kuckymoney.Luckymoneytable;
+import com.imooc.kuckymoney.service.LuckymoneyService;
+import com.imooc.kuckymoney.domain.Luckymoneytable;
+import com.imooc.kuckymoney.domain.Result;
+import com.imooc.kuckymoney.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,15 +37,23 @@ public class LuckymoneyController {
      *创建红包
      */
     @PostMapping("/luckymoneys")
-    public Luckymoneytable create(@Valid Luckymoneytable luckymoneytable,
-                                  BindingResult bindingResult){
+    public Result<Luckymoneytable> create(@Valid Luckymoneytable luckymoneytable,
+                                          BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
-           return null;
+//            Result result = new Result();
+//            result.setCode(1);
+//            result.setMsg(bindingResult.getFieldError().getDefaultMessage());
+//            return result;
+            return ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
         }
         luckymoneytable.setProducer(luckymoneytable.getProducer());
         luckymoneytable.setMoney(luckymoneytable.getMoney());
-        return repository.save(luckymoneytable);
+//        Result result = new Result();
+//        result.setCode(0);
+//        result.setMsg("成功");
+//        result.setData(repository.save(luckymoneytable));
+//        return result;
+        return ResultUtil.success(repository.save(luckymoneytable));
 
     }
     /**
